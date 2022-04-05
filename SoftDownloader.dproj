@@ -110,8 +110,12 @@
         <DCCReference Include="src\Views\SoftDownloader.Views.Splash.pas">
             <Form>frmSplash</Form>
         </DCCReference>
-        <DCCReference Include="src\Models\BDConnection\SoftDownloader.Models.BDConnection.FiredacConnection.pas"/>
-        <DCCReference Include="src\Models\BDConnection\SoftDownloader.Models.BDConnection.Interfaces.pas"/>
+        <DCCReference Include="src\Models\Entity\SoftDownloader.Models.Entity.Interfaces.pas"/>
+        <DCCReference Include="src\Models\Entity\SoftDownloader.Models.Entity.LogDownload.pas"/>
+        <DCCReference Include="src\Models\DBConnection\SoftDownloader.Models.DBConnection.ConnectionFactory.pas"/>
+        <DCCReference Include="src\Models\DBConnection\SoftDownloader.Models.DBConnection.FiredacConnection.pas"/>
+        <DCCReference Include="src\Models\DBConnection\SoftDownloader.Models.DBConnection.FiredacQuery.pas"/>
+        <DCCReference Include="src\Models\DBConnection\SoftDownloader.Models.DBConnection.Interfaces.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
