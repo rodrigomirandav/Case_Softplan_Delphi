@@ -4,7 +4,9 @@ uses
   Vcl.Forms,
   SysUtils,
   SoftDownloader.Views.Main in 'src\Views\SoftDownloader.Views.Main.pas' {frmMain},
-  SoftDownloader.Views.Splash in 'src\Views\SoftDownloader.Views.Splash.pas' {frmSplash};
+  SoftDownloader.Views.Splash in 'src\Views\SoftDownloader.Views.Splash.pas' {frmSplash},
+  SoftDownloader.Models.BDConnection.FiredacConnection in 'src\Models\BDConnection\SoftDownloader.Models.BDConnection.FiredacConnection.pas',
+  SoftDownloader.Models.BDConnection.Interfaces in 'src\Models\BDConnection\SoftDownloader.Models.BDConnection.Interfaces.pas';
 
 {$R *.res}
 
