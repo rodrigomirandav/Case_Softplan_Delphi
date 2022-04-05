@@ -10,7 +10,9 @@ uses
   SoftDownloader.Models.DBConnection.ConnectionFactory in 'src\Models\DBConnection\SoftDownloader.Models.DBConnection.ConnectionFactory.pas',
   SoftDownloader.Models.DBConnection.FiredacConnection in 'src\Models\DBConnection\SoftDownloader.Models.DBConnection.FiredacConnection.pas',
   SoftDownloader.Models.DBConnection.FiredacQuery in 'src\Models\DBConnection\SoftDownloader.Models.DBConnection.FiredacQuery.pas',
-  SoftDownloader.Models.DBConnection.Interfaces in 'src\Models\DBConnection\SoftDownloader.Models.DBConnection.Interfaces.pas';
+  SoftDownloader.Models.DBConnection.Interfaces in 'src\Models\DBConnection\SoftDownloader.Models.DBConnection.Interfaces.pas',
+  SoftDownloader.Models.Entity.Factory in 'src\Models\Entity\SoftDownloader.Models.Entity.Factory.pas',
+  SoftDownloader.Controllers.Interfaces in 'src\Controllers\SoftDownloader.Controllers.Interfaces.pas';
 
 {$R *.res}
 

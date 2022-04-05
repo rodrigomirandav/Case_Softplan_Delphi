@@ -3,13 +3,15 @@ unit SoftDownloader.Models.Entity.LogDownload;
 interface
 
 uses
-  SoftDownloader.Models.Entity.Interfaces, Data.DB;
+  Data.DB,
+  SoftDownloader.Models.Entity.Interfaces,
+  SoftDownloader.Models.DBConnection.Interfaces;
 
 type
 
   TModelsEntityLogDownload = class(TInterfacedObject, iModelsEntity)
     private
-      //FQuery : imode
+      FQuery : iDBQuery;
     public
       constructor create;
       destructor destroy; override;
@@ -20,16 +22,20 @@ type
 
 implementation
 
+uses
+  SoftDownloader.Models.DBConnection.ConnectionFactory;
+
 { TModelsEntityLogDownload }
 
 constructor TModelsEntityLogDownload.create;
 begin
-
+  FQuery := TConnectionFactory.New.Query;
 end;
 
 function TModelsEntityLogDownload.DataSet(aValue: TDataSource): iModelsEntity;
 begin
-
+  Result := Self;
+  aValue.DataSet := TDataSet(FQuery.Query);
 end;
 
 destructor TModelsEntityLogDownload.destroy;
@@ -40,12 +46,12 @@ end;
 
 class function TModelsEntityLogDownload.New: iModelsEntity;
 begin
-
+  Result := Self.Create;
 end;
 
 procedure TModelsEntityLogDownload.Open;
 begin
-
+  FQuery.Open('SELECT * FROM logdownload');
 end;
 
 end.
