@@ -24,9 +24,6 @@ object frmMain: TfrmMain
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 224
-    ExplicitWidth = 311
-    ExplicitHeight = 263
     object pnlTop: TPanel
       Left = 0
       Top = 0
@@ -37,7 +34,6 @@ object frmMain: TfrmMain
       Color = 5526612
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 614
       object pnlLogo: TPanel
         Left = 0
         Top = 0
@@ -258,7 +254,7 @@ object frmMain: TfrmMain
             BCD6E77A700000000049454E44AE426082}
           ExplicitWidth = 44
         end
-        object Label1: TLabel
+        object lblLogo: TLabel
           Left = 50
           Top = 20
           Width = 141
@@ -284,8 +280,6 @@ object frmMain: TfrmMain
       Color = clMedGray
       ParentBackground = False
       TabOrder = 1
-      ExplicitTop = 252
-      ExplicitWidth = 695
       DesignSize = (
         659
         77)
@@ -370,6 +364,7 @@ object frmMain: TfrmMain
         ParentFont = False
         TabOrder = 4
         WordWrap = True
+        OnClick = btnCloseClick
       end
     end
     object pnlDownload: TPanel
@@ -382,17 +377,13 @@ object frmMain: TfrmMain
       Color = clGray
       ParentBackground = False
       TabOrder = 2
-      ExplicitLeft = 6
-      ExplicitTop = 64
-      ExplicitWidth = 600
-      ExplicitHeight = 181
       DesignSize = (
         659
         198)
       object lblURL: TLabel
         Left = 40
         Top = 36
-        Width = 398
+        Width = 345
         Height = 25
         Anchors = [akLeft, akTop, akRight]
         Caption = 'Digite o endere'#231'o do arquivo desejado'
@@ -402,7 +393,6 @@ object frmMain: TfrmMain
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
-        ExplicitWidth = 345
       end
       object pgbStatusDownload: TProgressBar
         Left = 40
@@ -412,7 +402,6 @@ object frmMain: TfrmMain
         Anchors = [akLeft, akTop, akRight]
         Position = 50
         TabOrder = 0
-        ExplicitWidth = 615
       end
       object edtURL: TEdit
         Left = 40
@@ -428,7 +417,6 @@ object frmMain: TfrmMain
         ParentFont = False
         TabOrder = 1
         TextHint = 'https://www.softplan.com.br/'
-        ExplicitWidth = 615
       end
     end
   end

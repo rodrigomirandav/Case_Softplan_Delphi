@@ -23,8 +23,9 @@ type
     lblURL: TLabel;
     edtURL: TEdit;
     imgListMain: TImageList;
-    Label1: TLabel;
+    lblLogo: TLabel;
     btnClose: TButton;
+    procedure btnCloseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,5 +38,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmMain.btnCloseClick(Sender: TObject);
+begin
+  Close;
+end;
 
 end.
