@@ -14,7 +14,7 @@ type
       FConexao : iDBConnection;
     public
       constructor create(aValue : iDBConnection);
-      destructor destroy; override;
+      destructor Destroy; override;
       class function New(aValue : iDBConnection): TFiredacQuery;
       function Query : TObject;
       function Open(aSQL : String) : iDBQuery;
@@ -32,7 +32,7 @@ begin
   FQuery.Connection := TFDConnection(FConexao.Connection);
 end;
 
-destructor TFiredacQuery.destroy;
+destructor TFiredacQuery.Destroy;
 begin
   FQuery.Free;
   inherited;

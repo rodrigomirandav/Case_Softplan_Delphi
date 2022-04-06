@@ -40,6 +40,7 @@ uses
   FireDAC.Phys.PG,
   FireDAC.Phys.IBBase,
   FireDAC.Phys.IB,
+  FireDAC.DApt,
   SoftDownloader.Models.DBConnection.Interfaces;
 
 type
@@ -66,10 +67,11 @@ end;
 constructor TModelsDBConnectionFiredacConnection.Create;
 begin
   FConnection :=  TFDConnection.Create(nil);
-  FConnection.Params.DriverID := 'SQLite';  // TO-DO: Criar
-  FConnection.Params.Database := 'F:\Case Softplan\Case_Softplan_Delphi\src\Models\DBConnection\a.db';
+  FConnection.Params.DriverID := 'SQLite';
+  FConnection.Params.Database := 'F:\Case Softplan\Case_Softplan_Delphi\Win32\Debug\softdownloader.db';
   FConnection.Params.UserName := '';
-  FConnection.Params.Password := 'sotplan';
+  FConnection.Params.Password := '';
+
   FConnection.Connected := true;
 end;
 

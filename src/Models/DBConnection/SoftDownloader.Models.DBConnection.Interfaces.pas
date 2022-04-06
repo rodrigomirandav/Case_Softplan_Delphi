@@ -6,7 +6,7 @@ type
 
   iDBConnection = interface
     ['{6C595BEE-FCA4-4770-B944-9C09DF2A7017}']
-    function Connection : TObject;
+    function Connection () : TObject;
   end;
 
   iDBQuery = interface

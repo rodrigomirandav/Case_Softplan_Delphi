@@ -14,6 +14,7 @@ object frmMain: TfrmMain
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -299,6 +300,7 @@ object frmMain: TfrmMain
         ParentFont = False
         TabOrder = 3
         WordWrap = True
+        OnClick = btnStartDownloadClick
       end
       object btnStopDownload: TButton
         Left = 316
@@ -316,6 +318,7 @@ object frmMain: TfrmMain
         ParentFont = False
         TabOrder = 2
         WordWrap = True
+        OnClick = btnStopDownloadClick
       end
       object btnShowMensageDownload: TButton
         Left = 207
@@ -333,6 +336,7 @@ object frmMain: TfrmMain
         ParentFont = False
         TabOrder = 1
         WordWrap = True
+        OnClick = btnShowMensageDownloadClick
       end
       object btnShowHistoryDownload: TButton
         Left = 15
@@ -349,6 +353,7 @@ object frmMain: TfrmMain
         ParentFont = False
         TabOrder = 0
         WordWrap = True
+        OnClick = btnShowHistoryDownloadClick
       end
       object btnClose: TButton
         Left = 534
@@ -362,6 +367,7 @@ object frmMain: TfrmMain
         Font.Height = -11
         Font.Name = 'Segoe UI'
         Font.Style = []
+        Images = imgIcons
         ParentFont = False
         TabOrder = 4
         WordWrap = True
@@ -401,7 +407,6 @@ object frmMain: TfrmMain
         Width = 579
         Height = 17
         Anchors = [akLeft, akTop, akRight]
-        Position = 50
         TabOrder = 0
       end
       object edtURL: TEdit
@@ -421,8 +426,11 @@ object frmMain: TfrmMain
       end
     end
   end
-  object imgListMain: TImageList
-    Left = 552
-    Top = 9
+  object imgIcons: TImageList
+    DrawingStyle = dsTransparent
+    Height = 24
+    Width = 24
+    Left = 608
+    Top = 8
   end
 end

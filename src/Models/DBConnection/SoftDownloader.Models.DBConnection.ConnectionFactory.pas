@@ -11,7 +11,7 @@ type
     private
     public
       constructor create;
-      destructor destroy; override;
+      destructor Destroy; override;
       class function New : iDBConnectionFactory;
       function Conexao : iDBConnection;
       function Query : iDBQuery;
@@ -35,7 +35,7 @@ begin
 
 end;
 
-destructor TConnectionFactory.destroy;
+destructor TConnectionFactory.Destroy;
 begin
 
   inherited;

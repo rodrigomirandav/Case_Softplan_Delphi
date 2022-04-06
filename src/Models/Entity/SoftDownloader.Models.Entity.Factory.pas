@@ -9,19 +9,19 @@ type
 
   TModelsEntityFactory = class(TInterfacedObject, iModelsEntityFactory)
     private
-      FLogDownload : iModelsEntity;
+      FLogDownload : iModelsEntityDAODB;
     public
       constructor create;
-      destructor destroy; override;
+      destructor Destroy; override;
       class function New : iModelsEntityFactory;
 
-      function LogDownload : iModelsEntity;
+      function LogDownload : iModelsEntityDAODB;
   end;
 
 implementation
 
 uses
-  SoftDownloader.Models.Entity.LogDownload;
+  SoftDownloader.Models.Entity.DAO.LogDownload;
 
 { TModelsEntityFactory }
 
@@ -30,16 +30,16 @@ begin
 
 end;
 
-destructor TModelsEntityFactory.destroy;
+destructor TModelsEntityFactory.Destroy;
 begin
 
   inherited;
 end;
 
-function TModelsEntityFactory.LogDownload: iModelsEntity;
+function TModelsEntityFactory.LogDownload: iModelsEntityDAODB;
 begin
   if not Assigned(FLogDownload) then
-    FLogDownload := TModelsEntityLogDownload.New;
+    FLogDownload := TModelsEntityDAOLogDownload.New;
   Result := FLogDownload;
 end;
 

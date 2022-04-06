@@ -3,55 +3,60 @@ unit SoftDownloader.Models.Entity.LogDownload;
 interface
 
 uses
-  Data.DB,
-  SoftDownloader.Models.Entity.Interfaces,
-  SoftDownloader.Models.DBConnection.Interfaces;
+  SoftDownloader.Models.Entity.Interfaces;
 
 type
 
-  TModelsEntityLogDownload = class(TInterfacedObject, iModelsEntity)
+  TLogDownload = class(TInterfacedObject, iModelsEntity)
     private
-      FQuery : iDBQuery;
+    FCodigo : string;
+    FDataInicio : TDateTime;
+    FDataFim : TDateTime;
+    FURL: String;
     public
       constructor create;
-      destructor destroy; override;
-      class function New : iModelsEntity;
-      function DataSet ( aValue : TDataSource ) : iModelsEntity;
-      procedure Open;
+      destructor Destroy; override;
+      class function New : TLogDownload;
+      property URL : String read FURL write FURL;
+      property Codigo : String read FCodigo write FCodigo;
+      property DataInicio : TDateTime read FDataInicio write FDataInicio;
+      property DataFim : TDateTime read FDataFim write FDataFim;
+
+      procedure SetDataFim;
+      procedure SetDataInicio;
   end;
 
 implementation
 
 uses
-  SoftDownloader.Models.DBConnection.ConnectionFactory;
+  System.SysUtils;
 
-{ TModelsEntityLogDownload }
+{ TLogDownload }
 
-constructor TModelsEntityLogDownload.create;
+constructor TLogDownload.create;
 begin
-  FQuery := TConnectionFactory.New.Query;
+  FDataInicio := Now;
 end;
 
-function TModelsEntityLogDownload.DataSet(aValue: TDataSource): iModelsEntity;
-begin
-  Result := Self;
-  aValue.DataSet := TDataSet(FQuery.Query);
-end;
-
-destructor TModelsEntityLogDownload.destroy;
+destructor TLogDownload.Destroy;
 begin
 
   inherited;
 end;
 
-class function TModelsEntityLogDownload.New: iModelsEntity;
+class function TLogDownload.New: TLogDownload;
 begin
-  Result := Self.Create;
+  Result := Self.create;
 end;
 
-procedure TModelsEntityLogDownload.Open;
+procedure TLogDownload.SetDataFim;
 begin
-  FQuery.Open('SELECT * FROM logdownload');
+  FDataFim := Now;
+end;
+
+procedure TLogDownload.SetDataInicio;
+begin
+  FDataInicio := Now;
 end;
 
 end.
