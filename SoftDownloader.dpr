@@ -23,7 +23,8 @@ uses
   SoftDownloader.Types.Status in 'src\Types\SoftDownloader.Types.Status.pas',
   SoftDownloader.Views.Main in 'src\Views\SoftDownloader.Views.Main.pas' {frmMain},
   SoftDownloader.Views.Splash in 'src\Views\SoftDownloader.Views.Splash.pas' {frmSplash},
-  SoftDownloader.Views.Download.ListDownload in 'src\Views\Download\SoftDownloader.Views.Download.ListDownload.pas' {frmListDownloads};
+  SoftDownloader.Views.Download.ListDownload in 'src\Views\Download\SoftDownloader.Views.Download.ListDownload.pas' {frmListDownloads},
+  SoftDownloader.Types.FiredacDriverID in 'src\Types\SoftDownloader.Types.FiredacDriverID.pas';
 
 {$R *.res}
 

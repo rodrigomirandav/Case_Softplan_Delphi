@@ -55,11 +55,17 @@ end;
 
 procedure TfrmListDownloads.FormShow(Sender: TObject);
 begin
-  FControllerEntity
-    .Entities
-      .LogDownload
-      .DataSet(dsDownloads)
-    .Open;
+  Try
+    FControllerEntity
+      .Entities
+        .LogDownload
+        .DataSet(dsDownloads)
+      .Open;
+  Except on E : Exception do
+    Begin
+      MessageDlg(e.Message, TMsgDlgType.mtInformation, [mbok],0);
+    End;
+  End;
 end;
 
 procedure TfrmListDownloads.ZebrarGrid(Sender: TObject; const Rect: TRect;

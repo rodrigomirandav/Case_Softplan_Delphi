@@ -56,7 +56,6 @@ type
     destructor Destroy; override;
     class function New : iDBConnection;
     function Connection : TObject;
-    function CreateDBIfNotExist(aConfig : TConfig): iDBConnection;
     function SetConfig(aConfig : TConfig): iDBConnection;
     function ApplyConfigDB: iDBConnection;
     function DriverValidate: iDBConnection;
@@ -68,7 +67,8 @@ implementation
 
 uses
   System.SysUtils,
-  Vcl.Forms;
+  Vcl.Forms,
+  SoftDownloader.Types.FiredacDriverID;
 
 { TModelsDBConnectionFiredacConnection }
 
@@ -85,6 +85,9 @@ end;
 function TModelsDBConnectionFiredacConnection.ConfigValidate: iDBConnection;
 begin
   Result := Self;
+
+  if FConfig.Database = '' then
+    raise Exception.Create('É necessário informar o caminho/nome da instância do banco de dados.');
 end;
 
 function TModelsDBConnectionFiredacConnection.ConnectDB: iDBConnection;
@@ -104,12 +107,6 @@ begin
   FConnection := TFDConnection.Create(nil);
 end;
 
-function TModelsDBConnectionFiredacConnection.CreateDBIfNotExist(
-  aConfig: TConfig): iDBConnection;
-begin
-
-end;
-
 destructor TModelsDBConnectionFiredacConnection.Destroy;
 begin
   FConnection.Free;
@@ -120,6 +117,10 @@ end;
 function TModelsDBConnectionFiredacConnection.DriverValidate: iDBConnection;
 begin
   Result := Self;
+
+  if not TFiredacDriverIDHelper.DriverIdInFiredacDriverID(FConfig.DriverID) then
+    raise Exception.Create('Este drive de banco de dados não possui suporte');
+
 end;
 
 class function TModelsDBConnectionFiredacConnection.New : iDBConnection;
