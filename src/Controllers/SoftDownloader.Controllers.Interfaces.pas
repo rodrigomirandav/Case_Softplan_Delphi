@@ -22,11 +22,11 @@ type
     function StartDownload : iControllerDownload;
     function AbortDownload : iControllerDownload;
     function SaveLogDownload : iControllerDownload;
-    function ResetarStatusDownload : iControllerDownload;
     procedure OnStoppedTaskDownload(Sender: TObject);
     function DownloadNotStarted : Boolean;
+    function GetURL: String;
     function GetStatus: String;
-    function GetHttpCon: iHTTPConnection;
+    function GetStatusDownload : TStatus;
   end;
 
   iObserver = interface
@@ -38,7 +38,7 @@ type
     ['{CAE39279-5C22-49F3-9CBF-2FD078B7C564}']
     procedure AddObserver(const Observer: iObserver);
     procedure RemoveObserver(const Observer: iObserver);
-    procedure Notify;
+    procedure Notify(aStatus: TStatusDownload);
   end;
 
 implementation

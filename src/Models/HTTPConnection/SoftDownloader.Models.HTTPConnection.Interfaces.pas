@@ -9,7 +9,8 @@ type
 
   iHTTPConnection = interface
     ['{6C595BEE-FCA4-4770-B944-9C09DF2A7017}']
-    function Disconnect : iHTTPConnection;
+    procedure Disconnect;
+    function Connected : Boolean;
     function SetURL(const aURL : String) : iHTTPConnection;
     procedure GetDownload;
     function SetFileName : iHTTPConnection;

@@ -4,7 +4,7 @@ interface
 
 Type
 {$SCOPEDENUMS ON}
-  TStatus = (notStarted, inProgress, Completed, Error);
+  TStatus = (notStarted, inProgress, Completed, Error, Abort);
 {$SCOPEDENUMS OFF}
 
 implementation

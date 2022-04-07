@@ -140,6 +140,7 @@ begin
 
   MessageDlg('O download foi concluido com sucesso.', TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK],0);
   edtURL.Text := EmptyStr;
+  pgbStatusDownload.Position := 0;
 end;
 
 procedure TfrmMain.NotifyDownloadError(const StatusDownload: TStatusDownload);
@@ -147,7 +148,9 @@ begin
   if StatusDownload.Status <> TStatus.Error then
     Exit;
 
-  MessageDlg('Ocorreu um erro ao baixar o arquivo.', TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK],0);
+  MessageDlg(StatusDownload.MessageError, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK],0);
+  edtURL.Text := EmptyStr;
+  pgbStatusDownload.Position := 0;
 end;
 
 procedure TfrmMain.OnNewOperation(const StatusDownload: TStatusDownload);
@@ -160,14 +163,16 @@ end;
 
 procedure TfrmMain.SetButtonEnable(const StatusDownload: TStatusDownload);
 begin
-  btnStartDownload.Enabled := (StatusDownload.Status = TStatus.notStarted);
+  btnStartDownload.Enabled := (StatusDownload.Status <> TStatus.inProgress);
   btnStopDownload.Enabled := (StatusDownload.Status = TStatus.inProgress);
   btnShowMensageDownload.Enabled := (StatusDownload.Status = TStatus.inProgress);
 end;
 
 procedure TfrmMain.SetProgress(const StatusDownload: TStatusDownload);
 begin
-  pgbStatusDownload.Max := StatusDownload.TotalSize;
+  if StatusDownload.TotalSize > 0 then
+    pgbStatusDownload.Max := StatusDownload.TotalSize;
+
   pgbStatusDownload.Position := StatusDownload.ActualSize;
 end;
 

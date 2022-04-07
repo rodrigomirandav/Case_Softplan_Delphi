@@ -28,7 +28,8 @@ type
       constructor create(aParent : iControllerDownload);
       destructor Destroy; override;
       class function New(aParent : iControllerDownload): THttpConnection;
-      function Disconnect : iHTTPConnection;
+      function Connected : Boolean;
+      procedure Disconnect;
       function SetURL(const aURL : String) : iHTTPConnection;
       procedure GetDownload;
       function SetFileName : iHTTPConnection;
@@ -44,9 +45,15 @@ type
 implementation
 
 uses
-  System.Classes, System.SysUtils, System.Types;
+  System.Classes, System.SysUtils, System.Types, Vcl.Forms,
+  SoftDownloader.Types.Status;
 
 { THttpConnection }
+
+function THttpConnection.Connected: Boolean;
+begin
+  Result := FIdHttp.Connected;
+end;
 
 constructor THttpConnection.create(aParent : iControllerDownload);
 begin
@@ -65,21 +72,28 @@ begin
   inherited;
 end;
 
-function THttpConnection.Disconnect: iHTTPConnection;
+procedure THttpConnection.Disconnect;
 begin
-  Result := Self;
-  FIdHttp.Disconnect;
+  if FIdHttp.Connected then
+    FIdHttp.Disconnect;
 end;
 
 procedure THttpConnection.GetDownload;
 var
-  afileDownload : TFileStream;
+  afileDownload : TStream;
+  aFilePath : String;
 begin
-  afileDownload := TFileStream.Create(FFileName, fmCreate);
+  afileDownload := TMemoryStream.Create;
+
+  aFilePath := ExtractFilePath(Application.ExeName);
+
+  if not DirectoryExists(aFilePath + 'download') then
+    CreateDir(aFilePath + 'download');
 
   try
     try
       FIdHttp.Get(FURL, afileDownload);
+      TMemoryStream(afileDownload).SaveToFile(aFilePath + 'download\' + FFileName);
     except on E: Exception do
     begin
       raise Exception.Create(E.Message);
@@ -124,6 +138,9 @@ begin
   FAuthSSL.SSLOptions.Mode := sslmUnassigned;
   FAuthSSL.SSLOptions.VerifyMode := [];
   FAuthSSL.SSLOptions.VerifyDepth := 0;
+  FAuthSSL.MaxLineLength := MaxInt;
+  FAuthSSL.RecvBufferSize := 1000;
+  FAuthSSL.CheckForDisconnect(False, True);
 end;
 
 function THttpConnection.SetURL(const aURL: String): iHTTPConnection;
@@ -141,7 +158,7 @@ end;
 procedure THttpConnection.WorkBegin(ASender: TObject; AWorkMode: TWorkMode;
   AWorkCountMax: Int64);
 begin
-  FParent.ResetarStatusDownload;
+  FParent.SetStatusDownload(0);
   FParent.SetSizeDownload(AWorkCountMax);
 end;
 

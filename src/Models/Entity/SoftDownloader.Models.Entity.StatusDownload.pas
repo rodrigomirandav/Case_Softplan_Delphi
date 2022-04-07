@@ -13,6 +13,7 @@ type
     FTotalSize: Int64;
     FStatus: TStatus;
     FActualSize: Int64;
+    FMessageError: String;
     public
       constructor create;
       destructor Destroy; override;
@@ -21,8 +22,8 @@ type
       property Status : TStatus read FStatus write FStatus;
       property TotalSize : Int64 read FTotalSize write FTotalSize;
       property ActualSize : Int64 read FActualSize write FActualSize;
+      property MessageError : String read FMessageError write FMessageError;
       procedure ResetStatus;
-      function PercentualStatus : Double;
   end;
 
 implementation
@@ -45,16 +46,12 @@ begin
   Result := Self.create;
 end;
 
-function TStatusDownload.PercentualStatus: Double;
-begin
-  Result := ActualSize / TotalSize * 100;
-end;
-
 procedure TStatusDownload.ResetStatus;
 begin
   Status := TStatus.notStarted;
   TotalSize := 0;
   ActualSize := 0;
+  MessageError := '';
 end;
 
 end.
