@@ -6,6 +6,9 @@
         <Projects Include="SoftDownloader.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="TestProject\TestSoftDownloader.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="SoftDownloader:Make">
         <MSBuild Projects="SoftDownloader.dproj" Targets="Make"/>
     </Target>
+    <Target Name="TestSoftDownloader">
+        <MSBuild Projects="TestProject\TestSoftDownloader.dproj"/>
+    </Target>
+    <Target Name="TestSoftDownloader:Clean">
+        <MSBuild Projects="TestProject\TestSoftDownloader.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestSoftDownloader:Make">
+        <MSBuild Projects="TestProject\TestSoftDownloader.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="SoftDownloader"/>
+        <CallTarget Targets="SoftDownloader;TestSoftDownloader"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="SoftDownloader:Clean"/>
+        <CallTarget Targets="SoftDownloader:Clean;TestSoftDownloader:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="SoftDownloader:Make"/>
+        <CallTarget Targets="SoftDownloader:Make;TestSoftDownloader:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -3,7 +3,7 @@ unit SoftDownloader.Models.Entity.Interfaces;
 interface
 
 uses
-  Data.DB, SoftDownloader.Models.DBConnection.Interfaces;
+  Data.DB;
 
 type
 

@@ -2,11 +2,21 @@ unit SoftDownloader.Models.DBConnection.Interfaces;
 
 interface
 
+uses
+  SoftDownloader.Models.Entity.Interfaces,
+  SoftDownloader.Models.Entity.Config;
+
 type
 
   iDBConnection = interface
     ['{6C595BEE-FCA4-4770-B944-9C09DF2A7017}']
-    function Connection () : TObject;
+    function Connection : TObject;
+    function CreateDBIfNotExist(aConfig : TConfig): iDBConnection;
+    function SetConfig(aConfig : TConfig): iDBConnection;
+    function ConfigValidate: iDBConnection;
+    function DriverValidate: iDBConnection;
+    function ApplyConfigDB: iDBConnection;
+    function ConnectDB: iDBConnection;
   end;
 
   iDBQuery = interface

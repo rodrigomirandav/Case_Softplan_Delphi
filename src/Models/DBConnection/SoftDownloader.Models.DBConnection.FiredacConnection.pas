@@ -41,23 +41,57 @@ uses
   FireDAC.Phys.IBBase,
   FireDAC.Phys.IB,
   FireDAC.DApt,
-  SoftDownloader.Models.DBConnection.Interfaces;
+  SoftDownloader.Models.DBConnection.Interfaces,
+  SoftDownloader.Models.Entity.Interfaces,
+  SoftDownloader.Models.Entity.Config;
 
 type
 
   TModelsDBConnectionFiredacConnection = class(TInterfacedObject, iDBConnection)
   private
     FConnection : TFDConnection;
+    FConfig : TConfig;
   public
     constructor Create;
     destructor Destroy; override;
     class function New : iDBConnection;
     function Connection : TObject;
+    function CreateDBIfNotExist(aConfig : TConfig): iDBConnection;
+    function SetConfig(aConfig : TConfig): iDBConnection;
+    function ApplyConfigDB: iDBConnection;
+    function DriverValidate: iDBConnection;
+    function ConfigValidate: iDBConnection;
+    function ConnectDB: iDBConnection;
   end;
 
 implementation
 
+uses
+  System.SysUtils,
+  Vcl.Forms;
+
 { TModelsDBConnectionFiredacConnection }
+
+function TModelsDBConnectionFiredacConnection.ApplyConfigDB: iDBConnection;
+begin
+  Result := Self;
+
+  FConnection.Params.DriverID := FConfig.DriverID;
+  FConnection.Params.Database := FConfig.Database;
+  FConnection.Params.UserName := FConfig.UserName;
+  FConnection.Params.Password := FConfig.Password;
+end;
+
+function TModelsDBConnectionFiredacConnection.ConfigValidate: iDBConnection;
+begin
+  Result := Self;
+end;
+
+function TModelsDBConnectionFiredacConnection.ConnectDB: iDBConnection;
+begin
+  Result := Self;
+  FConnection.Connected := True;
+end;
 
 function TModelsDBConnectionFiredacConnection.Connection: TObject;
 begin
@@ -66,24 +100,40 @@ end;
 
 constructor TModelsDBConnectionFiredacConnection.Create;
 begin
-  FConnection :=  TFDConnection.Create(nil);
-  FConnection.Params.DriverID := 'SQLite';
-  FConnection.Params.Database := 'F:\Case Softplan\Case_Softplan_Delphi\Win32\Debug\softdownloader.db';
-  FConnection.Params.UserName := '';
-  FConnection.Params.Password := '';
+  FConfig := TConfig.create;
+  FConnection := TFDConnection.Create(nil);
+end;
 
-  FConnection.Connected := true;
+function TModelsDBConnectionFiredacConnection.CreateDBIfNotExist(
+  aConfig: TConfig): iDBConnection;
+begin
+
 end;
 
 destructor TModelsDBConnectionFiredacConnection.Destroy;
 begin
   FConnection.Free;
+  FConfig.Free;
   inherited;
 end;
 
-class function TModelsDBConnectionFiredacConnection.New: iDBConnection;
+function TModelsDBConnectionFiredacConnection.DriverValidate: iDBConnection;
 begin
-  Result := self.Create;
+  Result := Self;
+end;
+
+class function TModelsDBConnectionFiredacConnection.New : iDBConnection;
+begin
+  Result := Self.Create;
+end;
+
+function TModelsDBConnectionFiredacConnection.SetConfig(aConfig : TConfig): iDBConnection;
+begin
+  Result := Self;
+  FConfig.DriverID := aConfig.DriverID;
+  FConfig.Database := aConfig.Database;
+  FConfig.UserName := aConfig.UserName;
+  FConfig.Password := aConfig.Password;
 end;
 
 end.

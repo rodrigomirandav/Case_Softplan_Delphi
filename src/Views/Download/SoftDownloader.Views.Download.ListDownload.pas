@@ -51,7 +51,6 @@ end;
 procedure TfrmListDownloads.FormCreate(Sender: TObject);
 begin
   FControllerEntity := TControllerEntity.New;
-  ReportMemoryLeaksOnShutdown := true;
 end;
 
 procedure TfrmListDownloads.FormShow(Sender: TObject);

@@ -104,28 +104,32 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="src\Views\SoftDownloader.Views.Main.pas">
-            <Form>frmMain</Form>
-        </DCCReference>
-        <DCCReference Include="src\Views\SoftDownloader.Views.Splash.pas">
-            <Form>frmSplash</Form>
-        </DCCReference>
-        <DCCReference Include="src\Models\Entity\DAO\SoftDownloader.Models.Entity.DAO.LogDownload.pas"/>
+        <DCCReference Include="src\Controllers\SoftDownloader.Controllers.ControllerDownload.pas"/>
+        <DCCReference Include="src\Controllers\SoftDownloader.Controllers.ControllerEntity.pas"/>
+        <DCCReference Include="src\Controllers\SoftDownloader.Controllers.Interfaces.pas"/>
         <DCCReference Include="src\Models\DBConnection\SoftDownloader.Models.DBConnection.ConnectionFactory.pas"/>
         <DCCReference Include="src\Models\DBConnection\SoftDownloader.Models.DBConnection.FiredacConnection.pas"/>
         <DCCReference Include="src\Models\DBConnection\SoftDownloader.Models.DBConnection.FiredacQuery.pas"/>
-        <DCCReference Include="src\Models\HTTPConnection\SoftDownloader.Models.HTTPConnection.Interfaces.pas"/>
-        <DCCReference Include="src\Models\Entity\SoftDownloader.Models.Entity.Factory.pas"/>
-        <DCCReference Include="src\Controllers\SoftDownloader.Controllers.Interfaces.pas"/>
+        <DCCReference Include="src\Models\DBConnection\SoftDownloader.Models.DBConnection.Interfaces.pas"/>
         <DCCReference Include="src\Models\Entity\SoftDownloader.Models.Entity.Config.pas"/>
+        <DCCReference Include="src\Models\Entity\SoftDownloader.Models.Entity.Download.pas"/>
+        <DCCReference Include="src\Models\Entity\SoftDownloader.Models.Entity.Factory.pas"/>
         <DCCReference Include="src\Models\Entity\SoftDownloader.Models.Entity.Interfaces.pas"/>
         <DCCReference Include="src\Models\Entity\SoftDownloader.Models.Entity.LogDownload.pas"/>
-        <DCCReference Include="src\Controllers\SoftDownloader.Controllers.ControllerEntity.pas"/>
-        <DCCReference Include="src\Controllers\SoftDownloader.Controllers.ControllerDownload.pas"/>
-        <DCCReference Include="src\Types\SoftDownloader.Types.Status.pas"/>
         <DCCReference Include="src\Models\Entity\SoftDownloader.Models.Entity.StatusDownload.pas"/>
+        <DCCReference Include="src\Models\Entity\DAO\SoftDownloader.Models.Entity.DAO.Interfaces.pas"/>
+        <DCCReference Include="src\Models\Entity\DAO\SoftDownloader.Models.Entity.DAO.LogDownload.pas"/>
         <DCCReference Include="src\Models\HTTPConnection\SoftDownloader.Models.HTTPConnection.HttpConnection.pas"/>
-        <DCCReference Include="src\Models\DBConnection\SoftDownloader.Models.DBConnection.Interfaces.pas"/>
+        <DCCReference Include="src\Models\HTTPConnection\SoftDownloader.Models.HTTPConnection.Interfaces.pas"/>
+        <DCCReference Include="src\Types\SoftDownloader.Types.Status.pas"/>
+        <DCCReference Include="src\Views\SoftDownloader.Views.Main.pas">
+            <Form>frmMain</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\Views\SoftDownloader.Views.Splash.pas">
+            <Form>frmSplash</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="src\Views\Download\SoftDownloader.Views.Download.ListDownload.pas">
             <Form>frmListDownloads</Form>
             <FormType>dfm</FormType>

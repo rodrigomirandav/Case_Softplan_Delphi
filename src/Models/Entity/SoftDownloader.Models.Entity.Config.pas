@@ -9,7 +9,7 @@ type
 
   TConfig = class(TInterfacedObject, iModelsEntity)
     private
-    FDriver: String;
+    FDriverID: String;
     FDatabase: String;
     FPassword: String;
     FUserName: String;
@@ -19,7 +19,7 @@ type
       destructor Destroy; override;
       class function New : TConfig;
 
-      property Driver : String read FDriver write FDriver;
+      property DriverID : String read FDriverID write FDriverID;
       property Database : String read FDatabase write FDatabase;
       property UserName  : String read FUserName  write FUserName;
       property Password  : String read FPassword  write FPassword;
@@ -32,7 +32,10 @@ implementation
 
 constructor TConfig.create;
 begin
-
+  FDriverID := '';
+  FDatabase := '';
+  FPassword := '';
+  FUserName := '';
 end;
 
 destructor TConfig.Destroy;

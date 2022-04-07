@@ -289,7 +289,6 @@ begin
         FHTTP.SetURL(FControllerDownload.GetURL)
                   .SetFileName
                   .GetDownload;
-
       except on E: Exception do
         begin
           RaiseExcept('Ocorreu um erro no download do arquivo: erro ' + e.Message)

@@ -28,8 +28,6 @@ object frmListDownloads: TfrmListDownloads
     Color = clGray
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 441
-    ExplicitHeight = 203
     DesignSize = (
       543
       296)
@@ -88,8 +86,6 @@ object frmListDownloads: TfrmListDownloads
     Color = clMedGray
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = 211
-    ExplicitWidth = 441
     DesignSize = (
       543
       63)
@@ -109,8 +105,6 @@ object frmListDownloads: TfrmListDownloads
       TabOrder = 0
       WordWrap = True
       OnClick = btnCloseClick
-      ExplicitLeft = 534
-      ExplicitTop = 22
     end
   end
   object dsDownloads: TDataSource
